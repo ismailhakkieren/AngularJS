@@ -49,7 +49,6 @@ deneme2.filter("checkedItems", function () {
         return resultArr;
     }
 });
-
 deneme2.controller("ismailControl", function ($scope) {
     $scope.todo = ismailDeneme;
     $scope.incompleteCount = function () {
