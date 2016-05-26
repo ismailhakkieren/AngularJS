@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Angular Örnek-5</title>
+        <link href="css/bootstrap.css" rel="stylesheet" />
+        <link href="css/bootstrap-theme.css" rel="stylesheet" />
+        <script src="js/angular.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="js/init.js"></script>
+    </head>
+    <body>
+        <div class="col-lg-12" ng-app = "mainApp" ng-controller = "studentController" >
+            <h2>AngularJS Örnek Uygulama</h2>
+            <table class="table table-striped">
+                <tr>
+                   <td>İsminiz : </td>
+                   <td><input class="form-control" type = "text" ng-model = "student.firstName"></td>
+                </tr>
+                <tr>
+                   <td>Soyisminiz : </td>
+                   <td><input class="form-control" type = "text" ng-model = "student.lastName"></td>
+                </tr>
+
+                <tr>
+                   <td>Harç Ücretini Giriniz : </td>
+                   <td><input class="form-control" type = "text" ng-model = "student.fees"></td>
+                </tr>
+
+                <tr>
+                   <td>Derslerin Araması : </td>
+                   <td><input class="form-control" type = "text" ng-model = "subjectName"></td>
+                </tr>
+            </table>
+            <br/><hr/><br/>
+            <table class="table table-striped">
+                <tr>
+                    <td>İsmin Upper Case: </td><td>{{student.fullName() | uppercase}}</td>
+                </tr>
+                <tr>
+                    <td>Soyisim Lower Case: </td><td>{{student.fullName() | lowercase}}</td>
+                </tr>
+                <tr>
+                    <td>Harç Ücreti </td><td>{{student.fees | currency}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dersler :</td>
+
+                    <td>
+                        <ul>
+                            <li ng-repeat = "subject in student.subjects | filter: subjectName |orderBy:'marks'">
+                               {{ subject.name + ', marks:' + subject.marks }}
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            <script>
+                var mainApp = angular.module("mainApp", []);
+                mainApp.controller('studentController', function($scope) {
+                   $scope.student = {
+                      firstName: "İsmail Hakkı",
+                      lastName: "EREN",
+                      fees:500,
+
+                      subjects:[
+                         {name:'Fizik',marks:70},
+                         {name:'Kimya',marks:80},
+                         {name:'Matematik',marks:65}
+                      ],
+
+                      fullName: function() {
+                         var studentObject;
+                         studentObject = $scope.student;
+                         return studentObject.firstName + " " + studentObject.lastName;
+                      }
+                   };
+                });
+            </script>
+      
+        </div>
+    </body>
+</html>
