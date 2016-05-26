@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Angular Örnek-6 Sipariş Formu</title>
+        <link href="css/bootstrap.css" rel="stylesheet" />
+        <link href="css/bootstrap-theme.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
+        <script src="js/angular.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="js/init.js"></script>
+    </head>
+    <body>
+        <div class="col-lg-12" ng-app ng-controller="OrderFormController" >
+            <h2>AngularJS Sipariş Formu</h2>
+            <form>
+                <ul>       
+                    <li ng-repeat="service in services" ng-click="toggleActive(service)" ng-class="{active:service.active}">
+                        {{service.name}} <span>{{service.price | currency:"TL "}}</span>
+                    </li>
+                </ul>
+                <div class="total">
+                    Toplam :  <span>{{total() | currency:"TL "}}</span>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

@@ -46,11 +46,10 @@
                 </tr>
                 <tr>
                     <td>Dersler :</td>
-
                     <td>
                         <ul>
                             <li ng-repeat = "subject in student.subjects | filter: subjectName |orderBy:'marks'">
-                               {{ subject.name + ', marks:' + subject.marks }}
+                               {{ subject.name + ', Not : ' + subject.marks }}
                             </li>
                         </ul>
                     </td>
@@ -59,26 +58,24 @@
             <script>
                 var mainApp = angular.module("mainApp", []);
                 mainApp.controller('studentController', function($scope) {
-                   $scope.student = {
-                      firstName: "İsmail Hakkı",
-                      lastName: "EREN",
-                      fees:500,
+                    $scope.student = {
+                        firstName: "İsmail Hakkı",
+                        lastName: "EREN",
+                        fees:500,
+                        subjects:[
+                           {name:'Fizik',marks:70},
+                           {name:'Kimya',marks:80},
+                           {name:'Matematik',marks:65}
+                        ],
 
-                      subjects:[
-                         {name:'Fizik',marks:70},
-                         {name:'Kimya',marks:80},
-                         {name:'Matematik',marks:65}
-                      ],
-
-                      fullName: function() {
-                         var studentObject;
-                         studentObject = $scope.student;
-                         return studentObject.firstName + " " + studentObject.lastName;
-                      }
-                   };
+                        fullName: function() {
+                           var studentObject;
+                           studentObject = $scope.student;
+                           return studentObject.firstName + " " + studentObject.lastName;
+                        }
+                    };
                 });
             </script>
-      
         </div>
     </body>
 </html>

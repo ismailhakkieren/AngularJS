@@ -65,3 +65,37 @@ deneme2.controller("ismailControl", function ($scope) {
         $scope.todo.items.push({ action: actionText, done: false });
     }
 });
+
+//Sipariş Formu 
+function OrderFormController($scope){
+    $scope.services = [{
+        name: 'Geliştirme',
+        price: 500,
+        active:true
+    },{
+        name: 'Dizayn',
+        price: 300,
+        active:false
+    },{
+        name: 'Kod Entegrasyonu',
+        price: 250,
+        active:false
+    },{
+        name: 'Test',
+        price: 220,
+        active:false
+    }];
+
+    $scope.toggleActive = function(s){
+        s.active = !s.active;
+    };
+    $scope.total = function(){
+        var total = 0;
+        angular.forEach($scope.services, function(s){
+            if (s.active){
+                total+= s.price;
+            }
+        });
+        return total;
+    };
+}
