@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Angular Örnek-7 AngularJS Directives</title>
+        <link href="css/bootstrap.css" rel="stylesheet" />
+        <link href="css/bootstrap-theme.css" rel="stylesheet" />       
+        <script src="js/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.js"></script>
+        <script src="js/init.js"></script>
+        <style>
+            .ornek{font-size: 20px}
+            .sky {color:white;background-color:lightblue;padding:20px;font-family:"Courier New";}
+            .tomato {background-color:coral;padding:40px;font-family:Verdana;}
+            .striped {background-color:#f9f9f9;}
+        </style>
+    </head>
+    <body>
+        <div class="col-lg-12" ng-app = "ornekDirectives" ng-controller = "ornekController" >
+            <h2>AngularJS Directives</h2><br/><hr/><br/>
+            <!-- 1. Örnek -->
+            <h3>ng-bind Örneği</h3>
+            <div ng-init="myText='Bir Div deki ng-init directive ten gelen değeri p elemeti ile ng-bind ile basilması'">
+                <p ng-bind="myText"></p>
+            </div><hr/>
+            
+            <!-- 2. Örnek -->
+            <h3>ng-bind-html Örneği</h3>
+            <p ng-bind-html="myText2"></p>
+            <p><strong>Not : </strong>Bu örnek için "angular-sanitize.js" eklenir, böylelikle fonksiyon için HTML deki potansiyel tehlikeli elementleri siler.</p><hr/>
+            
+            <!-- 3. Örnek -->
+            <h3>ng-bind-template Örneği</h3>
+            <div ng-bind-template="{{firstName}} {{lastName}}" >asdasd</div><hr/>
+            
+            <!-- 4. Örnek -->
+            <h3>ng-blur Örneği</h3>
+            <input ng-blur="count = count + 1" ng-init="count=0" class="form-control" />
+            <h4>Blur olma sayisi :{{count}}</h4><hr/>
+            
+            <!-- 5. Örnek -->
+            <h3>ng-change Örneği</h3>
+            <input type="text" ng-change="myFunc()" ng-model="myValue" class="form-control"/>
+            <h4>Input'ta change {{change}} kez olmuştur.</h4><hr/>
+            
+            <!-- 6. Örnek -->
+            <h3>ng-checked Örneği</h3>
+            <h4>Arabalarım : </h4>
+            <div class="checkbox">
+                <label><input type="checkbox" ng-model="all"> Hepsini seç</label>
+            </div><br>
+            <div class="checkbox">
+                <label><input type="checkbox" ng-checked="all"> Volvo</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" ng-checked="all"> Ford</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" ng-checked="all"> Mercedes</label>
+            </div>
+            <p>Hepsini seç tıkladığınızda araba listesinde ki hepsini seçer.</p><hr/>
+            
+            <!-- 7. Örnek -->
+            <h3>ng-class Örneği</h3>
+            <select ng-model="home" class="form-control" >
+                <option value="sky">Sky</option>
+                <option value="tomato">Tomato</option>
+            </select><br/>
+            <div ng-class="home">
+                <h4>Welcome Home!</h4>
+                <p>CSS Değişimi</p>
+            </div><hr/>
+            
+            <!-- 8. Örnek -->
+            <h3>ng-class-even Örneği</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>İsim ve Soyisim</th>
+                        <th>Ülke</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in records" ng-class-even="'striped'">
+                        <td>{{x.Name}}</td>
+                        <td>{{x.Country}}</td>  
+                    </tr>
+                </tbody>
+            </table><hr/>
+            
+            <!-- 9. Örnek -->
+            <h3>ng-class-odd Örneği</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>İsim ve Soyisim</th>
+                        <th>Ülke</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in records" ng-class-odd="'striped'">
+                        <td>{{x.Name}}</td>
+                        <td>{{x.Country}}</td>  
+                    </tr>
+                </tbody>
+            </table><hr/>
+            
+            <!-- 10. Örnek -->
+            <h3>ng-click Örneği</h3>
+            <p>Butona Basın :</p>
+            <button ng-click="countt = countt + 1" ng-init="countt=0" class='btn btn-primary'>Tamam</button>
+            <h4>Buton {{countt}} kez tıklanmıştır.</h4><hr/>
+            
+            <!-- 11. Örnek -->
+            <h3>ng-cloak Örneği</h3>
+            <p ng-cloak>{{ 5 + 5 }}</p><hr/>
+            
+            <!-- 12. Örnek -->
+            <h3>ng-copy Örneği</h3>
+            <input ng-copy="counttt = counttt + 1" ng-init="count=0" value="Copy this text" class='form-control' />
+            <h4>Bu input içindeki text {{counttt}} koyalandı.</h4><hr/>
+            
+            <!-- 13. Örnek -->
+            <h3>ng-csp Örneği</h3>
+            <h4>Ng-CSP yönergesi angularjs güvenlik politikasını değiştirmek için kullanılır. ng-csp ile yönergesi seti, angularjs’nin herhangi eval fonksiyonları çalışmaz ve herhangi bir satır içi stilleri enjekte olmayacaktır.ng-csp değerinin ayarlanabilmesi için direktifi no-unsafe-eval, herhangi bir eval fonksiyonunun çalışması durumunda angularjs durdurur, ancak satır içi stilleri enjekte sağlayacaktır.ng-csp değerinin ayarlanabilmesi için direktifi no-inline-style, herhangi bir satır için hatalı gelen sitiller için angularjs ‘i durduracak, ancak eval işlevleri sağlayacaktır.</h4>
+            <p>{{5 + 5}}</p><hr/>
+            
+            <!-- 14. Örnek -->
+            <h3>ng-cut Örneği</h3>
+            <input ng-cut="countttt = countttt + 1" ng-init="count=0" value="Copy this text" class='form-control' />
+            <h4>Bu input içindeki text {{countttt}} kesildi.</h4><hr/>
+            
+            <!-- 15. Örnek -->
+            <h3>ng-dblclick Örneği</h3>
+            <h4 ng-dblclick="counts = counts + 1" ng-init="count=0">İsmail Hakkı EREN</h4>
+            <p>Başlığa {{counts}} kez doubleclik yapıldı.</p><hr/>
+            
+            <!-- 16. Örnek -->
+            <h3>ng-disabled Örneği</h3>
+            Pasif Yap <input type="checkbox" ng-model="alll"><br/><br/>
+            <input type="text" ng-disabled="alll">
+            <input type="radio" ng-disabled="alll">
+            <select ng-disabled="alll">
+                <option>Kadın</option>
+                <option>Erkek</option>  
+            </select><hr/>
+            
+            <!-- 17. Örnek -->
+            <h3>ng-focus Örneği</h3>
+            <input ng-focus="countss = countss + 1" ng-init="countss=0" class="form-control"/>
+            <h4>Inputun focuslanma sayısı : {{countss}}</h4><hr/>
+            
+            <!-- 18. Örnek -->
+            <h3>ng-form Örneği</h3>
+            <h4>Ornek Form Uygulaması</h4>
+            <form name="userFormTwo" novalidate>
+                <div class="form-group" ng-repeat="kullanici in formDatalari.kullanicilar" ng-class="{ 'has-error' : userFieldForm.email.$invalid }">
+                    <ng-form name="userFieldForm">
+                        <p>{{ kullanici.isim }}'in Email</p>
+                        <input type="email" name="email" ng-model="kullanici.email" required class="form-control"><br/>
+                        <div class="alert alert-danger" role="alert" ng-show="userFieldForm.email.$invalid">
+                            
+                            Geçerli bir eposta değeri gerekli
+                        </div>
+                    </ng-form>
+                </div>
+            </form>
+            <h4>{{ formDatalari }}</h4><hr/>
+            
+            <!-- 19. Örnek -->
+            <h3>ng-hide Örneği</h3>
+            Hide HTML: <input type="checkbox" ng-model="myVar1">
+            <div ng-hide="myVar1">
+                <h1>Hoşgeldiniz</h1>
+                <p>Chekbox'a bas bende kaybolayım.</p>
+            </div><hr/>
+            
+            <!-- 20. Örnek -->
+            <h3>ng-href Örneği</h3>
+            <div ng-init="myVaar = 'http://ismailhakkieren.com/'">
+                <h4>Front-End Developer</h4>
+                <p>Front-end Developer hakkında daha fazlası için <a ng-href="{{myVaar}}">{{myVaar}}</a> tıklayınız.</p>
+            </div><hr/>
+            
+            <!-- 21. Örnek -->
+            <h3>ng-if Örneği</h3>
+            HTML GİZLE GÖSTER: <input type="checkbox" ng-model="myyVar" ng-init="myyVar = true">
+            <div ng-if="myyVar">
+                <h1>Hoşgeldiniz</h1>
+                <p>Chekbox'a bas bende kaybolayım ama bu sefer ng-if kodu ile kayboluyorum.</p>
+            </div><hr/>
+            
+            <!-- 22. Örnek -->
+            <h3>ng-init Örneği</h3>
+            <div ng-init="myTextt='Hello World!'">
+            <h4>{{myTextt}}</h4>
+            <p>NgInit özelliği bir ifadeyi geçerli kapsamda değerlendirmek için kullanılır.</p>
+            <p><strong>Not: </strong>bir filtre ile birlikte ngInit ataması varsa doğru kullanımı sağlamak için parantez içine aldığınızdan emin olun.</p><hr/>
+            
+            <!-- 23. Örnek -->
+            <h3>ng-keydown Örneği</h3>
+            <input ng-keydown="ccount = ccount + 1" ng-init="ccount=0" class='form-control' />
+            <h4>Inputta ki keydown : {{ccount}} sayisi</h4><hr/>
+            
+            <!-- 24. Örnek -->
+            <h3>ng-keypress Örneği</h3>
+            <input ng-keypress="cccount = cccount + 1" ng-init="cccount=0" class='form-control' />
+            <h4>Inputta ki keypress : {{cccount}} sayisi</h4><hr/>
+            
+            <!-- 25. Örnek -->
+            <h3>ng-keyup Örneği</h3>
+            <input ng-keyup="ccccount = ccccount + 1" ng-init="ccccount=0"  class='form-control'/>
+            <h4>Inputta ki keyup : {{ccccount}} sayisi</h4><hr/>
+            
+            <!-- 26. Örnek -->
+            <h3>ng-list Örneği</h3><br/>
+            <p>Write some names in the input field, use a comma to separate them:</p><br/>
+            <input ng-model="customers" ng-list class='form-control'/><br/>
+            <p>When the ng-list directive is included, your input is converted into an array, one item for each name:</p><br/>
+            <pre>{{customers}}</pre><hr/>
+            
+            <!-- 27. Örnek -->
+            <h3>ng-model-options Örneği</h3>
+            <input ng-model="name" ng-model-options="{updateOn: 'blur'}">
+            <h4>{{name}}</h4><hr/>
+            
+            <!-- 28. Örnek -->
+            <h3>ng-mouseenter Örneği</h3>
+            <div ng-mouseenter="count = count + 1" ng-init="count=0">Mouse over me!</div>
+            <h4>{{count}}</h4><hr/>
+            
+            <!-- 29. Örnek -->
+            <h3>ng-mouseleave Örneği</h3>
+            <div ng-mouseleave="sayacc = sayacc + 1" ng-init="sayacc=0">Mouse over me! (and mouse away from me...)</div>
+            <h4>{{sayacc}}</h4><hr/>
+        </div>
+    </body>
+</html>

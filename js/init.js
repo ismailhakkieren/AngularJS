@@ -99,3 +99,39 @@ function OrderFormController($scope){
         return total;
     };
 }
+
+//Anguar Directives 
+var ornek = angular.module("ornekDirectives", ['ngSanitize']);
+ornek.controller("ornekController", function ($scope) {
+    $scope.myText2 = "İsim Soyisim: <span class='ornek'>İsmail Hakkı EREN</span>";
+    $scope.firstName = "İsmail Hakkı";
+    $scope.lastName = "EREN";
+    $scope.change = 0;
+    $scope.myFunc = function() {
+        $scope.change++;
+    };
+    $scope.records = [{
+      "Name" : "İsmail Hakkı EREN",
+      "Country" : "Türkiye"
+    },{
+      "Name" : "İsmail Hakkı EREN",
+      "Country" : "Fas"
+    },{
+      "Name" : "İsmail Hakkı EREN",
+      "Country" : "Suriye"
+    },{
+      "Name" : "İsmail Hakkı EREN",
+      "Country" : "ABDs"
+    }]
+
+    var kullanicilar = [{ 
+        isim: 'İsmail EREN',
+        email: ''
+    },{
+        isim: 'Hakkı EREN',
+        email: ''
+    }];  
+    $scope.formDatalari = {};
+    $scope.formDatalari.kullanicilar = kullanicilar;
+    $scope.name = "İsmail Hakkı EREN";
+});
